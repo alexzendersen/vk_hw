@@ -1,13 +1,14 @@
 def two_sum(arr, target):
     seen = {}
 
-    for value in arr:
-        complement = target - value
+    for i in range(len(arr)):
+        seen[arr[i]] = i
 
-        if complement in seen:
-            return [complement, value]
+    for i in range(len(arr)):
+        complement = target - arr[i]
 
-        seen[value] = True
+        if complement in seen and seen[complement] != i:
+            return [i, seen[complement]]
 
     return []
 

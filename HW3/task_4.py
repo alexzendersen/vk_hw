@@ -1,13 +1,18 @@
 def find_difference(a, b):
-    result = 0
-
-    for char in a:
-        result ^= ord(char)
+    counts = {}
 
     for char in b:
-        result ^= ord(char)
+        counts[char] = counts.get(char, 0) + 1
 
-    return chr(result)
+    for char in a:
+        if char in counts:
+            counts[char] -= 1
+
+    for char, count in counts.items():
+        if count > 0:
+            return char
+
+    return ""
 
 
 a = "abcd"
